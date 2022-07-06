@@ -1,42 +1,86 @@
 const posts = [
   {
     id: 1,
-    author: "Quentin Tarantino",
-    authorImg: "https://source.unsplash.com/random/",
+    author: "David Attemborough",
+    authorImg: "https://source.unsplash.com/random/100x100/?people,wildlife",
     date: "08/07/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/",
+    postImg: "https://source.unsplash.com/random/400x400/?nature,wildlife",
     likes: 23,
   },
   {
-    id: 1,
-    author: "Isaac Newton",
-    authorImg: "https://source.unsplash.com/random/",
+    id: 2,
+    author: "Samantha Cristoforetti",
+    authorImg: "https://source.unsplash.com/random/100x100/?people,space",
     date: "10/27/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/",
+    postImg: "https://source.unsplash.com/random/400x400/?space",
     likes: 109,
   },
   {
-    id: 1,
+    id: 3,
     author: "Eddie Vedder",
-    authorImg: "https://source.unsplash.com/random/",
+    authorImg: "https://source.unsplash.com/random/100x100/?vedder",
     date: "03/11/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/",
+    postImg: "https://source.unsplash.com/random/400x400/?rock,concert,music",
     likes: 62,
   },
   {
-    id: 1,
+    id: 4,
     author: "Elon Musk",
-    authorImg: "https://source.unsplash.com/random/",
+    authorImg: "https://source.unsplash.com/random/100x100/?tesla/",
     date: "02/20/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/",
+    postImg: "https://source.unsplash.com/random/400x400/?tesla,cars",
     likes: 79,
   },
 ];
+
+const postsList = document.getElementById("container");
+const profilePic = document.querySelector(".profile-pic");
+const author = document.querySelector(".post-meta__author");
+const date = document.querySelector(".post-meta__time");
+const postText = document.querySelector(".post__text");
+const postImg = document.querySelector(".post__image");
+const likes = document.getElementById("like-counter-1");
+
+for (let i = 0; i < posts.length; i++) {
+  const { id, author, authorImg, date, postText, postImg, likes } = posts[i];
+
+  let post = `<div class="post">
+<div class="post__header">
+  <div class="post-meta">
+    <div class="post-meta__icon">
+      <img class="profile-pic" src="${authorImg}" alt="Phil Mangione" />
+    </div>
+    <div class="post-meta__data">
+      <div class="post-meta__author">${author}</div>
+      <div class="post-meta__time">${date}</div>
+    </div>
+  </div>
+</div>
+<div class="post__text">
+${postText}
+</div>
+<div class="post__image">
+  <img src="${postImg}" alt="" />
+</div>
+<div class="post__footer">
+  <div class="likes js-likes">
+    <div class="likes__cta">
+      <a class="like-button js-like-button" href="#" data-postid="1">
+        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+        <span class="like-button__label">Mi Piace</span>
+      </a>
+    </div>
+    <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone</div>
+  </div>
+</div>
+</div>`;
+  postsList.innerHTML += post;
+}
