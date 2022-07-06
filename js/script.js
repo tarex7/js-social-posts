@@ -16,7 +16,7 @@ const posts = [
     date: "10/27/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/400x400/?space",
+    postImg: "https://source.unsplash.com/random/400x400/?space,earth",
     likes: 109,
   },
   {
@@ -26,7 +26,7 @@ const posts = [
     date: "03/11/2022",
     postText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea rem in quas. Aliquam eos ipsum, suscipit expedita provident fugiat nihil quam quas possimus iusto nemo in doloremque aliquid, minima rerum!",
-    postImg: "https://source.unsplash.com/random/400x400/?rock,concert,music",
+    postImg: "https://source.unsplash.com/random/400x400/?concert,rock",
     likes: 62,
   },
   {
@@ -48,7 +48,6 @@ const date = document.querySelector(".post-meta__time");
 const postText = document.querySelector(".post__text");
 const postImg = document.querySelector(".post__image");
 const likes = document.getElementById("like-counter-1");
-
 for (let i = 0; i < posts.length; i++) {
   const { id, author, authorImg, date, postText, postImg, likes } = posts[i];
 
@@ -73,7 +72,7 @@ ${postText}
 <div class="post__footer">
   <div class="likes js-likes">
     <div class="likes__cta">
-      <a class="like-button js-like-button" href="#" data-postid="1">
+      <a class="like-button js-like-button" href="#" >
         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
         <span class="like-button__label">Mi Piace</span>
       </a>
@@ -83,4 +82,16 @@ ${postText}
 </div>
 </div>`;
   postsList.innerHTML += post;
+}
+const likeBtn = document.querySelectorAll(".like-button");
+const thumbsUp = document.querySelectorAll(".fa-thumbs-up");
+const likesCounter = document.querySelectorAll("#like-counter-1");
+
+for (let i = 0; i < likeBtn.length; i++) {
+  likeBtn[i].addEventListener("click", (e) => {
+    e.target.classList.add("like-button--liked");
+    thumbsUp[i].classList.add("like-button--liked");
+
+    likesCounter[i].innerHTML = posts[i]["likes"]++;
+  });
 }
